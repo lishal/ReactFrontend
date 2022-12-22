@@ -7,6 +7,7 @@ const MemberState = (props) => {
 
   const [members, setMembers] = useState([]);
   const [errors,setErrors]=useState([]);
+  let [duplicateCheck,setDuplicateCheck]=useState([]);
 
   //Get All Members
   const getMembers= async()=>{
@@ -14,7 +15,6 @@ const MemberState = (props) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        
         "auth-token":
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM5MDM0ZTkxZDIzYWQ3ZmQ1NWYyZjMzIn0sImlhdCI6MTY3MDM5NTEyNH0.PU97sge9HH5u1WAdnbaZjkLXlmB06-BIBohZRNE0jmQ",
       }
@@ -87,9 +87,17 @@ const MemberState = (props) => {
     } 
     )
     
-    
+      
        const appendMember=await response.json();
-       setErrors(appendMember.errors);
+        setErrors(appendMember.errors);
+        if(appendMember.emailExist || appendMember.numberExist){
+          setDuplicateCheck(appendMember)
+        }
+        else{
+          setDuplicateCheck([])
+          
+        }
+       
 
     //   if( appendMember.errors){
     //     setErrors([await appendMember.errors])
@@ -184,7 +192,7 @@ const MemberState = (props) => {
 
   return (
     <MemberContext.Provider
-      value={{ members, errors, addMember, deleteMember, editMember,getMembers }}
+      value={{ members, errors,duplicateCheck, addMember, deleteMember, editMember,getMembers }}
     >
       {props.children}
     </MemberContext.Provider>
