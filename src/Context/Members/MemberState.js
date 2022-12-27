@@ -6,6 +6,7 @@ const MemberState = (props) => {
   // const membersDefault = []
 
   const [members, setMembers] = useState([]);
+  const [homeMembers, setHomeMembers] = useState([]);
   const [errors,setErrors]=useState([]);
   let [duplicateCheck,setDuplicateCheck]=useState([]);
 
@@ -15,8 +16,7 @@ const MemberState = (props) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM5MDM0ZTkxZDIzYWQ3ZmQ1NWYyZjMzIn0sImlhdCI6MTY3MDM5NTEyNH0.PU97sge9HH5u1WAdnbaZjkLXlmB06-BIBohZRNE0jmQ",
+        "auth-token":localStorage.getItem("token"),
       }
     });
     const result = await response.json()
@@ -24,6 +24,19 @@ const MemberState = (props) => {
     //  console.log(result.members)
     
   }
+
+  //Get All Members for Home Page
+  const getHomeMembers= async()=>{
+    const response = await fetch(`${host}/api/member/fetchallmembershomepage`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    const result = await response.json()
+     setHomeMembers(result.membersHome)
+  }
+
   //Add Members
   const addMember = async(
     fullname,
@@ -79,8 +92,7 @@ const MemberState = (props) => {
       headers: {
         "Content-Type":"application/json",
         'Accept': 'application/json',
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM5NGExMTdkYTU0ZGJjYjFhZDI3Yzg0In0sImlhdCI6MTY3MDc0Mzg5Nn0.nQHWuCYjeRH8uQJ_8dmlrTB7ctTbhDsMCM7uK8z4xOg",
+        "auth-token":localStorage.getItem("token"),
           "image":"image/png"
       },
       body: JSON.stringify(member),
@@ -131,8 +143,7 @@ const MemberState = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM5MDM0ZTkxZDIzYWQ3ZmQ1NWYyZjMzIn0sImlhdCI6MTY3MDM5NTEyNH0.PU97sge9HH5u1WAdnbaZjkLXlmB06-BIBohZRNE0jmQ",
+        "auth-token":localStorage.getItem("token")
       },
       body: JSON.stringify({fullname,
         email,
@@ -148,7 +159,7 @@ const MemberState = (props) => {
         familyAddress,
         familyPhone}),
     });
-
+    
      let newMember=JSON.parse(JSON.stringify(members));
     for (let index = 0; index < newMember.length; index++) {
       const element = newMember[index];
@@ -180,8 +191,7 @@ const MemberState = (props) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM5MDM0ZTkxZDIzYWQ3ZmQ1NWYyZjMzIn0sImlhdCI6MTY3MDM5NTEyNH0.PU97sge9HH5u1WAdnbaZjkLXlmB06-BIBohZRNE0jmQ",
+        "auth-token":localStorage.getItem("token")
       },
     });
     const newMember = members.filter((member) => {
@@ -192,7 +202,7 @@ const MemberState = (props) => {
 
   return (
     <MemberContext.Provider
-      value={{ members, errors,duplicateCheck, addMember, deleteMember, editMember,getMembers }}
+      value={{ members,homeMembers, errors,duplicateCheck ,getHomeMembers, addMember, deleteMember, editMember,getMembers }}
     >
       {props.children}
     </MemberContext.Provider>

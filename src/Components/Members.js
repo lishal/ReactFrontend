@@ -5,11 +5,11 @@ import memberContext from "../Context/Members/memberContext";
 
 export default function Members() {
   useEffect(() => {
-    getMembers()
+    getHomeMembers()
      // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
   const context = useContext(memberContext);
-  let {members,getMembers } = context;
+  let {homeMembers,getHomeMembers } = context;
   
 
   return (
@@ -18,7 +18,7 @@ export default function Members() {
       <div className="member_watford">
         <div className="row my-3 mx-3">
           <h2 align="center">Available Members</h2>
-          {members.map((member) => {
+          {homeMembers.map((member) => {
             return (
               <div className="col-md-4 my-3" key={member._id}>
                 <div className="card">

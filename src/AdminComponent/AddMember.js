@@ -11,6 +11,9 @@ export default function AddMember() {
   const { addMember, errors, duplicateCheck } = context;
 
   const navigate = useNavigate();
+  if(localStorage.getItem("token")===""){
+    window.location.href="http://localhost:3000/admin"
+ }
 
   const [member, setMember] = useState({
     fullname: "",
@@ -51,7 +54,7 @@ export default function AddMember() {
     );
   };
 
-  let clear = () => {};
+ 
   // let [errFullname,setErrFullname]=useState([])
   let errFullname = "";
   let errEmail = "";

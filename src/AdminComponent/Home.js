@@ -1,22 +1,21 @@
 import React, { useContext, useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import memberContext from "../Context/Members/memberContext";
 import Memberitem from "./Memberitem";
 
 const Home = () => {
+  let navigate=useNavigate();
+  const ref = useRef(null);
+  const refClose = useRef(null);
   const context = useContext(memberContext);
   const { members, getMembers,editMember } = context;
   const { deleteMember } = context;
-
   useEffect(() => {
     getMembers();
     // // eslint-disable-next-line
   }, []);
-
-
-  const ref = useRef(null);
-  const refClose = useRef(null);
 
   const [member, setMember] = useState({
     update_fullname: " ",
@@ -34,6 +33,12 @@ const Home = () => {
     update_familyPhone: " ",
   });
 
+
+  if(localStorage.getItem("token")===""){
+    navigate("/adminLogin");
+  }
+  else{
+ 
   const updateMember = (currentMember) => {
     ref.current.click();
             
@@ -304,6 +309,8 @@ const Home = () => {
       </div>
     </div>
   );
+  }
+  
 };
 
 export default Home;
