@@ -27,7 +27,7 @@ export default function Members() {
             <label htmlFor="memberSearch" className="d-flex align-items-center mx-3" style={{fontSize:"1.5rem"}}>Search Members: </label>
           <input style={{width:"30%"}}  type="text" name="memberSearch" onChange={(e) => setSearchValue(e.target.value)} value={searchValue} placeholder="Search by name and Phonenumber"/>
           </div>
-           {members().map((member) => {
+           {members().length===0?<div className="d-flex fw-bold fs-4 justify-content-center align-items-center" style={{height:"40vh"}}>Sorry! No Data Found</div>:members().map((member) => {
             return (
               <div className="col-md-4 my-3" key={member._id}>
                 <div className="card">
@@ -54,7 +54,7 @@ export default function Members() {
                 </div>
               </div>
             );
-          })} 
+          })}
         </div>
       </div>
       <Footer />
