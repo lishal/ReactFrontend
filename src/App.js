@@ -8,7 +8,7 @@ import Page404 from "./Components/Page404";
 import AdminLogin from "./AdminComponent/AdminLogin";
 import AddMember from "./AdminComponent/AddMember";
 import MemberState from "./Context/Members/MemberState";
-
+import Contact from "./Components/Contact"
 function App() {
   return (
     <div className="App">
@@ -22,6 +22,7 @@ function App() {
             <Route exact path="/adminLogin" element={<AdminLogin />}></Route>
             <Route exact path="/admin" element={<Admin />}></Route>
             <Route exact path="/addmember" element={<AddMember />}></Route>
+            <Route exact path="/contact" element={<Contact />}></Route>
             <Route path="*" element={<Page404 />} />
           </Routes>
         </Router>

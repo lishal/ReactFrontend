@@ -2,7 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import NavMain from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink ,useLocation } from "react-router-dom";
+import { NavLink  } from "react-router-dom";
 
 export default function Nav() {
   return (

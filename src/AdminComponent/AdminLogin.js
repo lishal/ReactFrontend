@@ -26,7 +26,6 @@ export default function AdminLogin() {
             localStorage.setItem('token', json.authtoken); 
             navigate("/admin");
             window.location.reload();
-
         }
         else{
             alert("Invalid credentials");

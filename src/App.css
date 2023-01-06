@@ -44,11 +44,13 @@
   font-size: larger;
   transition: 0.2s ease-in-out;
   font-weight:800;
+  font-size: 20px;
 }
 .nav-link{
   min-width: 23vh;
   display:flex;
   justify-content: center;
+  font-size: 18px;
 }
 .navbar-nav{    
   align-items:center;
@@ -58,20 +60,109 @@
   width:100%;
   height:85vh;
 }
+
+
+/* Contact Us */
+.watford_contact_box-group{
+  display: flex;
+  width: 50%;
+  margin: auto;
+}
+.watford_contact_box1,.watford_contact_box2,.watford_contact_box3{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+.watford_contact_box1 i,.watford_contact_box2 i,.watford_contact_box3 i{
+  font-size: 40px;
+}
 /* Footer */
 .footer_watford{
   width: 100%;
-  height: 30vh;
-  background:black
+  
+  position:relative;
+  height:40vh;
 
+}
+.footer-overlay-front{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  color: white;
+  height:40vh;
+  background:rgba(0, 0, 0,.9);
+  display: flex;
+  flex-direction: column;
 }
 .footer_img img{
-  width: 100%;
-  height: 30vh;
-  opacity: 0.5;
+  height:40vh;
+}
+.footer_layer1{
+  flex: 3;
+  width: auto;
+}
+.footer_layer2{
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
+.footer_section1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer_section3{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+.footer_section2{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.footer_section2 ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding-left:0;
+  align-items: center;
+}
+.footer_section2 ul a{
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+}
+.footer_section2 ul a:hover{
+  transition: 0.2s ease-in-out;
+  font-weight:800;
+}
 
+.footer_section3 ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  align-items: center;
+
+  padding-left:0
+}
+.footer_section3 ul a{
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+}
+.footer_section3 ul a:hover{
+  transition: 0.2s ease-in-out;
+  font-weight:800;
+}
 /* For Responsive */
 @media only screen and (max-width: 450px) {
   .watford-img_content p, .watford-img_content span{
@@ -84,7 +175,15 @@
 
   }
 }
-
+@media only screen and (max-width: 800px) {
+  .footer_img img{
+    height:65vh;
+  }
+  .footer-overlay-front{
+    height:65vh;
+  background:rgba(0, 0, 0,.9);
+  }
+}
 
 /* Member Page */
 .member_watford{

@@ -9,12 +9,14 @@ const Home = () => {
   let navigate=useNavigate();
   const ref = useRef(null);
   const refClose = useRef(null);
+  const refDel = useRef(null);
+  const refDelClose = useRef(null);
   const context = useContext(memberContext);
-  const { members, getMembers,editMember } = context;
-  const { deleteMember } = context;
+  const { members, getMembers,editMember,deleteMember } = context;
+  let delID=""
   useEffect(() => {
     getMembers();
-    // // eslint-disable-next-line
+    //eslint-disable-next-line
   }, []);
 
   const [member, setMember] = useState({
@@ -61,11 +63,16 @@ const Home = () => {
     
   };
 
+  const delMember=(deleteCurrentMember)=>{
+    refDel.current.click();
+    delID=deleteCurrentMember
+  }
+
   const onChange = (e) => {
     setMember({ ...member, [e.target.name]: e.target.value });
   };
 
-  const handleClick = (e)=>{ 
+  const handleClick = ()=>{ 
     editMember(member.id,
       member.update_fullname,
       member.update_email,
@@ -295,6 +302,67 @@ const Home = () => {
         </div>
       </div>
 
+      {/* Model For Delete */}
+
+      <button
+        type="button"
+        ref={refDel}
+        className="btn btn-primary d-none"
+        data-bs-toggle="modal"
+        data-bs-target="#deleteModel"
+      >
+        Modal for Delete
+      </button>
+
+      <div
+        className="modal fade"
+        id="deleteModel"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabIndex="-1"
+        aria-labelledby="deleteModel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Delete Member?</h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                ref={refDelClose}
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <p>Are you sure you want to <span className="text-danger font-weight-bolder">DELETE</span> member?</p>
+            </div>
+            <div className="modal-footer d-flex justify-content-center">
+              <button
+                type="button"
+                className="btn btn-success mx-3"
+                onClick={() => {
+                  console.log(delID)
+                  deleteMember(delID);
+                  refDelClose.current.click()
+                }}
+              >
+                Yes
+              </button>
+              <button
+                type="button"
+                className="btn btn-danger mx-3"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="row my-3 mx-3">
         <h2 align="center">Available Members</h2>
         {members.map((member) => {
@@ -302,6 +370,7 @@ const Home = () => {
             <Memberitem
               key={member._id}
               updateMember={updateMember}
+              delMember={delMember}
               member={member}
             />
           );

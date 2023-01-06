@@ -7,7 +7,7 @@ export default function Page404() {
     <div>
       <Nav/>
       <div className="page404 d-flex align-items-center justify-content-center" style={{height:"55vh"}}>
-        <p class="fs-3" > Sorry! We can't find what you are looking for</p>
+        <p className="fs-3" > Sorry! We can't find what you are looking for</p>
       </div>
       <Footer />
     </div>
