@@ -185,6 +185,14 @@
   }
 }
 
+/* Responsive for contact */
+
+@media only screen and (max-width: 970px){
+  .watford_contact_box-group{
+    flex-direction: column;
+    
+  }
+}
 /* Member Page */
 .member_watford{
   min-height: 70vh;
