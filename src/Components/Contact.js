@@ -48,7 +48,7 @@ export default function Contact() {
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control px-3 py-3"
                 id="name"
                 placeholder="Please enter your name"
                 required
@@ -60,7 +60,7 @@ export default function Contact() {
               </label>
               <input
                 type="email"
-                className="form-control"
+                className="form-control px-3 py-3"
                 id="email"
                 placeholder="Please enter your email"
                 required
@@ -72,7 +72,7 @@ export default function Contact() {
               </label>
               <input
                 type="number"
-                className="form-control"
+                className="form-control px-3 py-3"
                 id="number"
                 placeholder="Please enter your contact number"
                 required
@@ -83,7 +83,7 @@ export default function Contact() {
                 Message
               </label>
               <textarea
-                className="form-control"
+                className="form-control px-3 py-3"
                 id="message"
                 placeholder="Please enter your message here"
                 rows="3"
